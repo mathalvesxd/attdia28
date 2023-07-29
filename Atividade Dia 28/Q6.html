@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Questão 6</title>
+    <style>
+        button {
+            margin-top: 15px;
+        }
+
+        p {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Programa E-mail Institucional</h1>
+    <label for="nomeCompleto">Funcionário: </label>
+    <input type="text" id="nomeCompleto"><br>
+    <button onclick="gerarEmail()">Gerar E-mail</button><br>
+    <p id="resultado"></p>
+
+    <script>
+        function gerarEmail() {
+            var nomeCompleto = document.getElementById("nomeCompleto").value;
+    
+            var palavras = nomeCompleto.trim().toLowerCase().split(" ");
+
+            var iniciais = palavras.map(palavra => palavra.charAt(0));
+
+            var email = iniciais.join("") + "@empresa.com.br";
+
+            document.getElementById("resultado").textContent = "E-mail: " + email;
+        }
+    </script>
+</body>
+</html>

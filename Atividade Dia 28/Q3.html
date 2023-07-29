@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Questão 3</title>
+  <style>
+    #listaContas {
+      list-style: none;
+      padding: 0;
+    }
+
+    p {
+        display: inline;
+    }
+
+    button {
+        border: 1px solid black;
+        border-radius: 4px;
+    }
+
+    button:hover {
+        background-color: black;
+        color: white;
+    }
+  </style>
+</head>
+<>
+  <h1>Programa Contas do Mês</h1>
+  
+  <form id="formContas">
+        <label for="descricao">Descrição da Conta:</label>
+        <input type="text" id="descricao" required><br><br>
+
+        <label for="valor">Valor a Pagar R$:</label>
+        <input type="number" id="valor" required><br><br>
+
+        <button type="button" onclick="adicionarConta()">Registrar Conta</button>
+
+  </form>
+  
+  <ul id="listaContas"></ul>
+
+  <hr>
+  
+  <p><span id="totalContas">0</span> Conta(s) - </p>
+  <p>Total R$: <span id="totalPagar">0</span></p>
+  
+  <script>
+    let contador = 0;
+    let acumulador = 0;
+    
+    function adicionarConta() {
+      const descricao = document.getElementById("descricao").value;
+      const valor = parseFloat(document.getElementById("valor").value);
+      
+      if (descricao !== "" && !isNaN(valor) && valor > 0) {
+        contador++;
+        acumulador += valor;
+        
+        const listaContas = document.getElementById("listaContas");
+        const li = document.createElement("li");
+        li.textContent = `${descricao} - R$: ${valor.toFixed(2)}`;
+        listaContas.appendChild(li);
+        
+        document.getElementById("totalContas").textContent = contador;
+        document.getElementById("totalPagar").textContent = acumulador.toFixed(2);
+        
+        // Limpa os campos do formulário
+        document.getElementById("descricao").value = "";
+        document.getElementById("valor").value = "";
+      } else {
+        alert("Preencha a descrição e o valor corretamente!");
+      }
+    }
+  </script>
+</body>
+</html>
